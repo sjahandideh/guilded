@@ -1,7 +1,11 @@
 <template>
 <div class="todo-list">
   <div class="ui big divided selection list">
-    <todo-list-item/>
+    <todo-list-item
+      v-for="item in items"
+      :key="item.id"
+      :item="item"
+      />
   </div>
 </div>
 </template>
@@ -11,6 +15,15 @@ import TodoListItem from './TodoListItem.vue'
 
 export default {
   name: 'TodoList',
+  data () {
+    return {
+      items: [
+        { id: 1, title: 'Clean House', status: 'success' },
+        { id: 2, title: 'Call sis', status: 'fail' },
+        { id: 3, title: 'Take a shower', status: 'active'}
+      ]
+    }
+  },
   components: {
     TodoListItem
   }
