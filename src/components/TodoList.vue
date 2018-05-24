@@ -1,10 +1,8 @@
 <template>
 <div class="todo-list">
-  <table class="ui celled table">
-    <tbody>
-      <todo-list-item/>
-    </tbody>
-  </table>
+  <div class="ui big divided selection list">
+    <todo-list-item/>
+  </div>
 </div>
 </template>
 
