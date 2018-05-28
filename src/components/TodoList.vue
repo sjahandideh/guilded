@@ -12,18 +12,13 @@
 
 <script>
 import TodoListItem from './TodoListItem.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'TodoList',
-  data () {
-    return {
-      items: [
-        { id: 1, title: 'Clean House', status: 'success' },
-        { id: 2, title: 'Call sis', status: 'fail' },
-        { id: 3, title: 'Take a shower', status: 'active' }
-      ]
-    }
-  },
+  computed: mapGetters({
+    items: 'getTodos'
+  }),
   components: {
     TodoListItem
   }

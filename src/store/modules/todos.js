@@ -2,12 +2,17 @@ const state = {
   todos: []
 }
 
-const getters = {}
+const getters = {
+  getTodos () {
+    return state.todos
+  }
+}
 
 export const actions = {}
 
 export const mutations = {
   createTodoItem (state, title) {
+    console.log('creating new item: ', title)
     let todos = state.todos
     todos.push({
       id: (state.todos.length + 1),
@@ -23,6 +28,7 @@ export const mutations = {
     state.todos = todos
   },
   markTodoItemAsDone (state, id) {
+    console.log('marking as done: ', id)
     let todos = state.todos
     let item = _findItem(state.todos, id)
     item.state = 'success'
@@ -30,6 +36,7 @@ export const mutations = {
     state.todos = todos
   },
   markTodoItemAsFailed (state, id) {
+    console.log('marking as failed: ', id)
     let todos = state.todos
     let item = _findItem(state.todos, id)
     item.state = 'fail'
@@ -38,7 +45,7 @@ export const mutations = {
   }
 }
 
-// private utility functions
+// private help functions
 function _findItem (todos, id) {
   let item = todos.filter(e => e.id === id)
   if (item.length === 0) {
