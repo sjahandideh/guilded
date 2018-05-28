@@ -20,7 +20,7 @@ export default {
       items: [
         { id: 1, title: 'Clean House', status: 'success' },
         { id: 2, title: 'Call sis', status: 'fail' },
-        { id: 3, title: 'Take a shower', status: 'active'}
+        { id: 3, title: 'Take a shower', status: 'active' }
       ]
     }
   },
