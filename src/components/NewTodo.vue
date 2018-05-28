@@ -1,9 +1,9 @@
 <template>
 <div class="new-todo">
   <div class="ui right labeled left icon input">
-    <i class="tags icon"></i>
-    <input type="text" placeholder="Walk fluffy">
-    <a class="ui tag label">
+    <i class="pencil icon"></i>
+    <input type="text" v-model="task.title" placeholder="Walk fluffy">
+    <a class="ui tag label" @click="createTodoItem(task.title)">
       Add Todo
     </a>
   </div>
@@ -11,6 +11,19 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
+export default {
+  name: 'NewTodo',
+  data () {
+    return {
+      task: { title: 'Pet Wolly' }
+    }
+  },
+  methods: mapMutations([
+    'createTodoItem'
+  ])
+}
 </script>
 
 <style scoped>
