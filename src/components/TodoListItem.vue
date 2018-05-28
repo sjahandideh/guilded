@@ -5,6 +5,7 @@
     <i v-if="item.state === 'success'" class="large icon check circle outline green"></i>
     <i v-if="item.state === 'active'" class="large icon clock outline yellow"></i>
 
+    <i class="link icon large failed trash alternate circle orange" @click="removeTodoItem(item.id)"></i>
     <i class="link icon large done check circle green" @click="markTodoItemAsDone(item.id)"></i>
     <i class="link icon large failed times circle red" @click="markTodoItemAsFailed(item.id)"></i>
     <i class="link icon large failed clock circle yellow" @click="markTodoItemAsActive(item.id)"></i>
@@ -24,7 +25,8 @@ export default {
   methods: mapMutations([
     'markTodoItemAsDone',
     'markTodoItemAsFailed',
-    'markTodoItemAsActive'
+    'markTodoItemAsActive',
+    'removeTodoItem'
   ])
 }
 </script>
@@ -37,7 +39,7 @@ export default {
 .todo-list-item i.link {
   visibility: hidden;
   position: relative;
-  left: -45px;
+  left: -35px;
 }
 .todo-list-item:hover i {
   opacity: 0.2;
