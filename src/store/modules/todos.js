@@ -12,7 +12,6 @@ export const actions = {}
 
 export const mutations = {
   createTodoItem (state, title) {
-    console.log('creating new item: ', title)
     let todos = state.todos
     todos.push({
       id: (state.todos.length + 1),
@@ -28,7 +27,6 @@ export const mutations = {
     state.todos = todos
   },
   markTodoItemAsDone (state, id) {
-    console.log('marking as done: ', id)
     let todos = state.todos
     let item = _findItem(state.todos, id)
     item.state = 'success'
@@ -36,10 +34,16 @@ export const mutations = {
     state.todos = todos
   },
   markTodoItemAsFailed (state, id) {
-    console.log('marking as failed: ', id)
     let todos = state.todos
     let item = _findItem(state.todos, id)
     item.state = 'fail'
+
+    state.todos = todos
+  },
+  markTodoItemAsActive (state, id) {
+    let todos = state.todos
+    let item = _findItem(state.todos, id)
+    item.state = 'active'
 
     state.todos = todos
   }

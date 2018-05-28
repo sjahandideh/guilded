@@ -1,9 +1,13 @@
 <template>
-  <a class="todo-list-item item" @click="markTodoItemAsDone(item.id)">
+  <a class="todo-list-item item">
     {{ item.title }}
     <i v-if="item.state === 'fail'" class="large icon times circle outline red"></i>
     <i v-if="item.state === 'success'" class="large icon check circle outline green"></i>
     <i v-if="item.state === 'active'" class="large icon clock outline yellow"></i>
+
+    <i class="link icon large done check circle green" @click="markTodoItemAsDone(item.id)"></i>
+    <i class="link icon large failed times circle red" @click="markTodoItemAsFailed(item.id)"></i>
+    <i class="link icon large failed clock circle yellow" @click="markTodoItemAsActive(item.id)"></i>
   </a>
 </template>
 
@@ -19,14 +23,34 @@ export default {
   },
   methods: mapMutations([
     'markTodoItemAsDone',
-    'markTodoItemAsFailed'
+    'markTodoItemAsFailed',
+    'markTodoItemAsActive'
   ])
 }
 </script>
 
-<style>
+<style type='scoped'>
 .todo-list-item {
   text-align: left;
+  display: flex;
+}
+.todo-list-item i.link {
+  visibility: hidden;
+  position: relative;
+  left: -45px;
+}
+.todo-list-item:hover i {
+  opacity: 0.2;
+}
+.todo-list-item:hover i.link {
+  visibility: visible;
+  opacity: 1;
+}
+.done {
+  color: green !important;
+}
+.failed {
+  color: red!important;
 }
 .todo-list-item i {
   float: right;
