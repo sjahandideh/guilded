@@ -1,7 +1,7 @@
 <template>
-<div class="todo-list">
-  <div class="ui big divided selection list">
-    <todo-list-item
+<div class="guild-list">
+  <div class="ui link centered three stackable cards">
+    <guild-list-item
       v-for="item in items"
       :key="item.id"
       :item="item"
@@ -11,23 +11,21 @@
 </template>
 
 <script>
-import TodoListItem from './TodoListItem.vue'
+import GuildListItem from './GuildListItem.vue'
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'TodoList',
+  name: 'GuildList',
   computed: mapGetters({
-    items: 'getTodos'
+    items: 'getGuilds'
   }),
   components: {
-    TodoListItem
+    GuildListItem
   }
 }
 </script>
 
 <style>
-.todo-list {
-  width: 310px;
-  margin: 40px auto;
+.guild-list {
 }
 </style>
