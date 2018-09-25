@@ -5,7 +5,7 @@ export const state = {
 }
 
 export const getters = {
-  getUserId: state => state.user.id
+  getUser: state => state.user
 }
 
 export default {

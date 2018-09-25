@@ -3,7 +3,7 @@
     <div class="content">
       <div class="header">{{ item.title }}</div>
     </div>
-    <div class="image">
+    <div class="image" @click="show(item)">
       <img :src='require(`@/assets/${item.logo}`)'>
     </div>
     <div class="extra content">
@@ -29,8 +29,14 @@ export default {
   },
   methods: {
     subscribe: function (guildId) {
-      let userId = this.$store.getters.getUserId
-      this.$store.commit('guildSubscribe', guildId, userId)
+      let user = this.$store.getters.getUser
+      this.$store.commit('guildSubscribe', { guildId: guildId, user: user })
+    },
+    show: function (guild) {
+      this.$router.push({
+        name: 'Guild',
+        params: guild
+      })
     }
   }
 }

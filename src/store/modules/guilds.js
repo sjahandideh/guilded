@@ -13,16 +13,24 @@ export const getters = {
 export const actions = {}
 
 export const mutations = {
-  guildSubscribe (state, guildId, userId) {
+  guildSubscribe (state, payload) {
+    let guildId = payload.guildId
+    let user = payload.user
+
     let guilds = state.guilds
     let guild = _findItem(guilds, guildId)
 
-    let existingUser = guild.members.includes(userId)
+    // add user to the guild
+    let existingUser = guild.members.includes(user.id)
     if (guild && guild.id && !existingUser) {
-      guild.members.push(userId)
+      guild.members.push(user)
     }
 
-    state.guilds = guilds
+    // reorder guilds to have this at the front
+    let orderedGuilds = guilds.filter(g => g.id !== guild.id)
+    orderedGuilds.unshift(guild)
+
+    state.guilds = orderedGuilds
   },
   guildCreate (state, title) {
     let guilds = state.guilds
