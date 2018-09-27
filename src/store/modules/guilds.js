@@ -13,16 +13,13 @@ export const getters = {
 export const actions = {}
 
 export const mutations = {
-  guildSubscribe (state, payload) {
-    let guildId = payload.guildId
-    let user = payload.user
-
+  guildSubscribe (state, { guildId, user }) {
     let guilds = state.guilds
     let guild = _findItem(guilds, guildId)
 
     // add user to the guild
-    let existingUser = guild.members.filter(m => m.id === user.id).length > 0
-    if (guild && guild.id && !existingUser) {
+    let newUser = !_isUserInGuild(guild, user)
+    if (guild && guild.id && newUser) {
       guild.members.push(user)
     }
 
@@ -32,17 +29,12 @@ export const mutations = {
 
     state.guilds = orderedGuilds
   },
-  guildCreate (state, title) {
+  guildUnsubscribe (state, { guildId, user }) {
     let guilds = state.guilds
-    guilds.push({
-      id: (state.guilds.length + 1),
-      title: title
-    })
+    let guild = _findItem(guilds, guildId)
 
-    state.guilds = guilds
-  },
-  gulidRemove (state, id) {
-    let guilds = state.guilds.filter(e => e.id !== id)
+    let members = guild.members.filter(m => m.id !== user.id)
+    guild.members = members
 
     state.guilds = guilds
   }
@@ -52,6 +44,10 @@ export const mutations = {
 function _findItem (guilds, id) {
   let item = guilds.filter(e => e.id === id)
   return item[0]
+}
+
+function _isUserInGuild(guild, user) {
+  return guild.members.filter(m => m.id === user.id).length > 0
 }
 
 export default {
