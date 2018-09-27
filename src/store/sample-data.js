@@ -41,31 +41,53 @@ const EVENT_TYPES = {
   MEETING: 'meeting'
 }
 
+const ACTION_PLANS = [
+  {
+    id: 1,
+    eventId: 1,
+    plan: 'List appropriate diversity conferences to sponsor',
+    status: STATES.DONE,
+    members: [
+      SAMPLE_USERS[2]
+    ]
+  },
+  {
+    id: 2,
+    eventId: 1,
+    plan: 'Find ways to bring diversity theme into our Hatch Day',
+    status: STATES.ACTIVE,
+    members: [
+      SAMPLE_USERS[2],
+      SAMPLE_USERS[3]
+    ]
+  }
+]
 const EVENTS = [
   {
     id: 1,
-    guildId: 1,
+    guildId: 'culture-guild',
     type: EVENT_TYPES.MEETING,
     date: moment().subtract(1, 'weeks'),
-    goal: 'Suggest action plans to embrace diversity in our work environment',
-    agenda: `1. Focus on intervention, not just bias reduction\n2.Keep the focus on workplace issues, not personal ones`,
-    minutes: SAMPLE_MINUTES_TEXT,
+    title: 'Increasing diversity in the workplace',
+    goals: `1. Find diversity conferences to sponser\n2. Find ways to embrace diversity in the office\n`,
+    action-plans: [ACTION_PLANS[0], ACTION_PLANS[1]],
     state: STATES.DONE
   },
   {
     id: 2,
-    guildId: 1,
+    guildId: 'culture-guild',
     type: EVENT_TYPES.MEETING,
     date: moment().add(1, 'days'),
-    goal: 'Suggest action plans to embrace diversity in our work environment',
-    agenda: `1. Focus on intervention, not just bias reduction\n2.Keep the focus on workplace issues, not personal ones`,
+    title: 'Suggest action plans to embrace diversity in our work environment',
+    goals: `1. Focus on intervention, not just bias reduction\n2.Keep the focus on workplace issues, not personal ones`,
+    action-plans: '',
     state: STATES.ACTIVE
   }
 ]
 
 const SAMPLE_GUILDS = [
   {
-    id: 1,
+    id: 'culture-guild',
     title: 'Culture Guild',
     logo: 'culture-guild.jpg',
     description: SAMPLE_TEXT,
@@ -73,10 +95,16 @@ const SAMPLE_GUILDS = [
       active: [EVENTS[1]],
       finished: [EVENTS[0]]
     },
-    members: []
+    members: [
+      SAMPLE_USERS[1],
+      SAMPLE_USERS[2],
+      SAMPLE_USERS[3],
+      SAMPLE_USERS[4],
+      SAMPLE_USERS[5]
+    ]
   },
   {
-    id: 2,
+    id: 'design-guild',
     title: 'Design Guild',
     logo: 'design-guild.jpg',
     description: SAMPLE_TEXT,
@@ -84,10 +112,13 @@ const SAMPLE_GUILDS = [
       active: [],
       finished: []
     },
-    members: []
+    members: [
+      SAMPLE_USERS[2],
+      SAMPLE_USERS[5]
+    ]
   },
   {
-    id: 3,
+    id: 'web-guild',
     title: 'Web Guild',
     logo: 'web-guild.svg',
     description: SAMPLE_TEXT,
@@ -95,10 +126,14 @@ const SAMPLE_GUILDS = [
       active: [],
       finished: []
     },
-    members: []
+    members: [
+      SAMPLE_USERS[0],
+      SAMPLE_USERS[2],
+      SAMPLE_USERS[5]
+    ]
   },
   {
-    id: 4,
+    id: 'mobile-guild',
     title: 'Mobile Guild',
     logo: 'mobile-guild.jpg',
     description: SAMPLE_TEXT,
@@ -109,7 +144,7 @@ const SAMPLE_GUILDS = [
     members: []
   },
   {
-    id: 5,
+    id: 'cloud-guild',
     title: 'Cloud Guild',
     logo: 'cloud-guild.jpg',
     description: SAMPLE_TEXT,
@@ -117,7 +152,9 @@ const SAMPLE_GUILDS = [
       active: [],
       finished: []
     },
-    members: []
+    members: [
+      SAMPLE_USERS[1]
+    ]
   }
 ]
 
