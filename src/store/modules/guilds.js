@@ -21,7 +21,7 @@ export const mutations = {
     let guild = _findItem(guilds, guildId)
 
     // add user to the guild
-    let existingUser = guild.members.includes(user.id)
+    let existingUser = guild.members.filter(m => m.id === user.id).length > 0
     if (guild && guild.id && !existingUser) {
       guild.members.push(user)
     }
